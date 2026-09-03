@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Collections</h1>
+  <div class="list-group">
+    {% for c in collections %}
+      <a class="list-group-item list-group-item-action" href="/collections/{{c.slug}}">
+        <h5 class="mb-1">{{c.title}}</h5>
+        <small class="text-muted">{{c.description}}</small>
+      </a>
+    {% else %}
+      <div class="alert alert-secondary">No collections yet.</div>
+    {% endfor %}
+  </div>
+{% endblock %}

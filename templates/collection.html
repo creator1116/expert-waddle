@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>{{ collection.title }}</h1>
+  <p>{{ collection.description }}</p>
+
+  <h4>Links</h4>
+  <ul id="links-list" class="collection-links" data-slug="{{collection.slug}}">
+    {% for cl in collection.links %}
+      <li data-clid="{{cl.id}}">
+        <span class="drag-handle">☰</span>
+        <a href="{{cl.link.url}}" target="_blank">{{cl.link.title}}</a>
+        <form method="post" action="/collections/{{collection.slug}}/delete_link/{{cl.link.id}}" style="display:inline">
+          <button class="btn btn-sm btn-danger ms-2" type="submit">Remove</button>
+        </form>
+        <div><small class="text-muted">{{cl.link.description}}</small></div>
+      </li>
+    {% else %}
+      <li class="text-muted">No links yet.</li>
+    {% endfor %}
+  </ul>
+
+  {% if is_admin %}
+  <hr>
+  <h5>Add link</h5>
+  <form method="post" action="/collections/{{collection.slug}}/add_link">
+    <div class="mb-3">
+      <input class="form-control" name="title" placeholder="Link title">
+    </div>
+    <div class="mb-3">
+      <input class="form-control" name="url" placeholder="https://example.com">
+    </div>
+    <div class="mb-3">
+      <textarea class="form-control" name="description" placeholder="Description"></textarea>
+    </div>
+    <div class="mb-3">
+      <input class="form-control" name="tags" placeholder="tags,comma,separated">
+    </div>
+    <button class="btn btn-primary">Add</button>
+  </form>
+  {% endif %}
+{% endblock %}

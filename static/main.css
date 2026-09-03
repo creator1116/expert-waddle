@@ -1,0 +1,5 @@
+/* main.css */
+body { padding-top: 1rem; }
+.container { max-width: 900px; }
+.collection-links { list-style: none; padding: 0; }
+.collection-links li { padding: 10px; border: 1px solid #eee; margin-bottom: 8px; background: #fff; }
