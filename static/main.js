@@ -3,7 +3,9 @@
 let DATA = null;
 
 async function loadData(){
-  const res = await fetch('/data/content.json');
+  // use relative path so the site works when hosted under a repo subpath (GitHub Pages) or root (Cloudflare Pages)
+  const res = await fetch('./data/content.json');
+  if (!res.ok) throw new Error('Failed to load data/content.json: ' + res.status + ' ' + res.statusText);
   DATA = await res.json();
 }
 
@@ -76,8 +78,14 @@ function escapeAttr(s){ return escapeHtml(s).replaceAll('\"','&quot;'); }
 window.addEventListener('hashchange', router);
 
 window.addEventListener('DOMContentLoaded', async ()=>{
-  await loadData();
-  q('#loading').style.display='none';
-  q('#searchInput').addEventListener('input', ()=>router());
-  router();
+  try{
+    await loadData();
+    q('#loading').style.display='none';
+    q('#searchInput').addEventListener('input', ()=>router());
+    router();
+  }catch(e){
+    const app = q('#app');
+    app.innerHTML = `<div class="alert alert-danger">Error loading content: ${escapeHtml(e.message)}</div>`;
+    console.error(e);
+  }
 });
