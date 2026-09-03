@@ -1,0 +1,25 @@
+{
+  "collections": [
+    {
+      "id": "getting-started",
+      "title": "Getting Started",
+      "slug": "getting-started",
+      "description": "Introductory links and resources.",
+      "visibility": "public",
+      "links": [
+        { "id": "g1", "title": "Example Domain", "url": "https://example.com", "description": "A placeholder example site.", "tags": ["example","demo"] },
+        { "id": "g2", "title": "GitHub", "url": "https://github.com", "description": "Git hosting and collaboration.", "tags": ["git","code"] }
+      ]
+    },
+    {
+      "id": "tools",
+      "title": "Tools",
+      "slug": "tools",
+      "description": "Handy tools and utilities.",
+      "visibility": "public",
+      "links": [
+        { "id": "t1", "title": "Regex101", "url": "https://regex101.com", "description": "Regex tester and debugger.", "tags": ["regex","tool"] }
+      ]
+    }
+  ]
+}

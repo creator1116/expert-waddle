@@ -1,6 +1,1 @@
-Flask==2.2.5
-Flask-SQLAlchemy==3.0.3
-python-slugify==8.0.1
-
-# Optional for production
-# gunicorn
+# No Python dependencies required — the site is static.
